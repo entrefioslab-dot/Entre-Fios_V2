@@ -9,32 +9,25 @@ from fpdf import FPDF
 from io import BytesIO
 
 def gerar_proposta_pdf(resumo_orcamento):
-    """
-    Gera um arquivo PDF com a proposta comercial para o cliente.
-    
-    Args:
-        resumo_orcamento (dict): Dicionário com resumo do orçamento
-        
-    Returns:
-        bytes: Conteúdo do PDF em bytes
-    """
     pdf = FPDF()
     pdf.add_page()
-    pdf.set_font("Arial", size=10)
+    
+    # Usando fontes padrão (Helvetica é equivalente ao Arial e mais compatível)
+    pdf.set_font("Helvetica", size=10)
     pdf.set_left_margin(10)
     pdf.set_right_margin(10)
     
     # --- CABEÇALHO ---
-    pdf.set_font("Arial", 'B', size=16)
+    pdf.set_font("Helvetica", 'B', size=16)
     pdf.cell(0, 12, txt="PROPOSTA COMERCIAL", ln=True, align='C')
-    pdf.set_font("Arial", size=9)
+    pdf.set_font("Helvetica", size=9)
     pdf.cell(0, 6, txt=f"Data: {datetime.now().strftime('%d/%m/%Y às %H:%M')}", ln=True, align='C')
     pdf.ln(3)
     
     # --- RESUMO EXECUTIVO ---
-    pdf.set_font("Arial", 'B', size=11)
+    pdf.set_font("Helvetica", 'B', size=11)
     pdf.cell(0, 8, txt="RESUMO EXECUTIVO", ln=True, border=1)
-    pdf.set_font("Arial", size=9)
+    pdf.set_font("Helvetica", size=9)
     
     # Tabela de resumo
     col_width = 100
@@ -62,9 +55,9 @@ def gerar_proposta_pdf(resumo_orcamento):
     pdf.ln(3)
     
     # --- ITENS DO ORÇAMENTO ---
-    pdf.set_font("Arial", 'B', size=11)
+    pdf.set_font("Helvetica", 'B', size=11)
     pdf.cell(0, 8, txt="ITENS INCLUSOS", ln=True, border=1)
-    pdf.set_font("Arial", size=8)
+    pdf.set_font("Helvetica", size=8)
     
     for idx, item in enumerate(resumo_orcamento['itens'], 1):
         produto_info = item['produto_info']
@@ -87,9 +80,9 @@ def gerar_proposta_pdf(resumo_orcamento):
     pdf.ln(2)
     
     # --- INFORMAÇÕES PARA ENVIO ---
-    pdf.set_font("Arial", 'B', size=11)
+    pdf.set_font("Helvetica", 'B', size=11)
     pdf.cell(0, 8, txt="INFORMAÇÕES PARA ENVIO", ln=True, border=1)
-    pdf.set_font("Arial", size=9)
+    pdf.set_font("Helvetica", size=9)
     
     col_width = 100
     pdf.cell(col_width, 6, txt="Peso Total Estimado:", border=0)
@@ -104,12 +97,11 @@ def gerar_proposta_pdf(resumo_orcamento):
     pdf.ln(3)
     
     # --- RODAPÉ ---
-    pdf.set_font("Arial", 'I', size=8)
+    pdf.set_font("Helvetica", 'I', size=8)
     pdf.cell(0, 5,
         txt="Este é um orçamento preliminar. Valores sujeitos a alteração conforme confirmação de detalhes. "
             "Prazo de validade: 7 dias.",
         ln=True, align='C')
     
-    # Retornar o PDF como bytes
-    pdf_bytes = pdf.output(dest='S').encode('latin-1')
-    return pdf_bytes
+    # Na fpdf2, para pegar os bytes, basta chamar output() sem argumentos
+    return pdf.output()
