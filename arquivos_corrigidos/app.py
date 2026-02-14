@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-ENTRE FIOS
-Sistema de orçamento
+Sistema de Orçamento de Estamparia - Interface Streamlit
+Aplicação principal para cálculo de orçamentos com múltiplos fornecedores.
 """
 
 import sys
@@ -27,8 +27,8 @@ if "orcamento_itens" not in st.session_state:
     st.session_state.orcamento_itens = []
 
 # --- Título e Descrição ---
-st.title("👕 Sistema de Orçamento de Estamparia")
-st.markdown("**Ferramenta profissional para cálculo de orçamentos com múltiplos fornecedores**")
+st.title("Entre Fios")
+st.markdown("Sistema de Orçamentos")
 st.markdown("---")
 
 # --- SIDEBAR - Instruções ---
