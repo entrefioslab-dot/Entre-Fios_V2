@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Sistema de Orçamento de Estamparia - Interface Streamlit
-Aplicação principal para cálculo de orçamentos com múltiplos fornecedores.
+ENTRE FIOS
+Sistema de orçamento
 """
 
 import sys
